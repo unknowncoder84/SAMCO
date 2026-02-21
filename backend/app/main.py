@@ -3,6 +3,7 @@ FastAPI main application entry point with complete API routes
 """
 import logging
 import json
+import os
 from datetime import datetime
 from typing import List, Optional, Dict
 from fastapi import FastAPI, HTTPException, File, UploadFile, Form
@@ -27,13 +28,11 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Bhavcopy Pro API", version="1.0.0")
 
-# Configure CORS
+# Configure CORS - support both local and production
+cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:3001").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://localhost:3001",  # Frontend on alternate port
-    ],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
