@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import Sidebar from '@/components/Sidebar';
 import MainConsole from '@/components/MainConsole';
 import SegmentSelector from '@/components/SegmentSelector';
