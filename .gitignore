@@ -60,7 +60,7 @@ build/
 .DS_Store
 Thumbs.db
 
-# Test files
+# Test files and debug scripts
 test_*.py
 debug_*.py
 inspect_*.py
@@ -71,37 +71,57 @@ examine_*.py
 find_*.py
 manual_*.py
 
-# Documentation (keep main docs, remove test docs)
+# Temporary documentation files
+*_FIX*.md
+*_GUIDE*.md
+*_STATUS*.md
+*_SOLUTION*.md
+*_SUMMARY*.md
+*_DEPLOYMENT*.md
+*_INSTRUCTIONS*.md
 BROWSER_FIX.md
-FIX_INSTRUCTIONS.md
-FIXES_APPLIED.md
-FINAL_FIX_STEPS.md
-TROUBLESHOOTING.md
 COMPLETE_SOLUTION.md
-RESET_AND_TEST.html
-clear_browser_storage.html
-test_from_browser.html
-form_filled.png
-bhavcopy_page.png
-samco_*.png
-samco_*.html
-EMPTY_FILE_ISSUE.md
-EMPTY_FILE_FIX_COMPLETE.md
-HOW_TO_FIX_EMPTY_DOWNLOADS.md
-WORKING_SOLUTION.md
-SOLUTION_SUMMARY.md
-QUICK_FIX_GUIDE.md
-SYSTEM_WORKING_STATUS.md
-FINAL_STATUS.md
-LATEST_UPDATES.md
+DEPLOY_NOW.md
+DIRECT_DOWNLOAD_GUIDE.md
+ERROR_HANDLING_IMPROVEMENTS.md
+FINAL_*.md
+FIX_*.md
+FIXES_*.md
+HOW_TO_*.md
+LATEST_*.md
+NETLIFY_*.md
+NEW_FEATURE_GUIDE.md
 PANDAS-IMPORT-FIXED.md
-QUICK_START.md
-SYSTEM_READY.md
+PE_CE_FILTER_UPDATE.md
+QUICK_*.md
+RENDER_*.md
+SESSION_*.md
+SYSTEM_*.md
+TROUBLESHOOTING.md
+UPDATES_*.md
+USER_GUIDE.md
+WORKING_*.md
 
-# Downloaded CSV files
+# Test HTML files
+*.html
+!frontend/public/*.html
+
+# Screenshots and images (except logos)
+*.png
+*.jpg
+*.jpeg
+!frontend/public/*.png
+!frontend/public/*.jpg
+!frontend/public/*.jpeg
+
+# Downloaded data files
 *.csv
 *.xlsx
 !backend/requirements.txt
+!test-symbols.csv
 
-# Kiro specs (optional - remove if you don't want to include)
+# Kiro specs
 .kiro/
+
+# Vercel
+.vercel/
