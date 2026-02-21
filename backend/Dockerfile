@@ -4,9 +4,11 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies
+# Install system dependencies including Playwright dependencies
 RUN apt-get update && apt-get install -y \
     gcc \
+    wget \
+    gnupg \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements file
@@ -14,6 +16,9 @@ COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Install Playwright and browsers
+RUN playwright install chromium && playwright install-deps
 
 # Copy application code
 COPY app/ ./app/
