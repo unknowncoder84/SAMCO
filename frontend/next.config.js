@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { dirname, resolve } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -9,7 +9,10 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': __dirname,
+      '@': resolve(__dirname),
+      '@/lib': resolve(__dirname, 'lib'),
+      '@/components': resolve(__dirname, 'components'),
+      '@/app': resolve(__dirname, 'app'),
     };
     return config;
   },
