@@ -1,0 +1,107 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.log
+.pytest_cache/
+.hypothesis/
+*.cover
+.coverage
+htmlcov/
+venv/
+env/
+ENV/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.next/
+out/
+build/
+.DS_Store
+*.pem
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+test_*.py
+debug_*.py
+inspect_*.py
+verify_*.py
+verify-*.ps1
+check_*.py
+examine_*.py
+find_*.py
+manual_*.py
+
+# Documentation (keep main docs, remove test docs)
+BROWSER_FIX.md
+FIX_INSTRUCTIONS.md
+FIXES_APPLIED.md
+FINAL_FIX_STEPS.md
+TROUBLESHOOTING.md
+COMPLETE_SOLUTION.md
+RESET_AND_TEST.html
+clear_browser_storage.html
+test_from_browser.html
+form_filled.png
+bhavcopy_page.png
+samco_*.png
+samco_*.html
+EMPTY_FILE_ISSUE.md
+EMPTY_FILE_FIX_COMPLETE.md
+HOW_TO_FIX_EMPTY_DOWNLOADS.md
+WORKING_SOLUTION.md
+SOLUTION_SUMMARY.md
+QUICK_FIX_GUIDE.md
+SYSTEM_WORKING_STATUS.md
+FINAL_STATUS.md
+LATEST_UPDATES.md
+PANDAS-IMPORT-FIXED.md
+QUICK_START.md
+SYSTEM_READY.md
+
+# Downloaded CSV files
+*.csv
+*.xlsx
+!backend/requirements.txt
+
+# Kiro specs (optional - remove if you don't want to include)
+.kiro/
