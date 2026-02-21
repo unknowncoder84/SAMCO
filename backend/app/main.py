@@ -76,6 +76,22 @@ class ExportRequest(BaseModel):
 # ============================================================================
 
 
+@app.get("/")
+async def root():
+    """Root endpoint - API info"""
+    return {
+        "name": "Bhavcopy Pro API",
+        "version": "1.0.0",
+        "status": "running",
+        "endpoints": {
+            "health": "/api/health",
+            "download": "/api/download-csv",
+            "scrape": "/api/scrape",
+            "export": "/api/export"
+        }
+    }
+
+
 @app.get("/api/health")
 async def health_check():
     """Health check endpoint"""
