@@ -74,7 +74,6 @@ manual_*.py
 # Temporary documentation files
 *_FIX*.md
 *_GUIDE*.md
-*_STATUS*.md
 *_SOLUTION*.md
 *_SUMMARY*.md
 *_DEPLOYMENT*.md
@@ -96,11 +95,13 @@ PE_CE_FILTER_UPDATE.md
 QUICK_*.md
 RENDER_*.md
 SESSION_*.md
-SYSTEM_*.md
 TROUBLESHOOTING.md
 UPDATES_*.md
 USER_GUIDE.md
 WORKING_*.md
+# But keep these important docs
+!PROJECT_STATUS.md
+!START_LOCAL.md
 
 # Test HTML files
 *.html
