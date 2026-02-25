@@ -286,10 +286,44 @@ class PlaywrightSamcoScraper:
                         return csv_data
                 
                 # File not found in form response
-                available_files = [f['filename'] for f in file_links_from_form]
-                raise FileNotUploadedException(
-                    f"File {expected_filename} not available. Files for {date.strftime('%d-%b-%Y')}: {', '.join(available_files)}"
-                )
+                # Extract dates from available files to find the latest
+                import re
+                dates_in_files = []
+                for f in file_links_from_form:
+                    match = re.search(r'(\d{8})', f['filename'])
+                    if match:
+                        try:
+                            file_date = datetime.strptime(match.group(1), '%Y%m%d')
+                            dates_in_files.append(file_date)
+                        except:
+                            pass
+                
+                if dates_in_files:
+                    latest_date = max(dates_in_files)
+                    latest_date_str = latest_date.strftime('%d-%b-%Y')
+                    
+                    # Check if requested date is today
+                    if date.date() == datetime.now().date():
+                        raise FileNotUploadedException(
+                            f"Today's file ({date.strftime('%d-%b-%Y')}) is not available yet. "
+                            f"Samco typically uploads files after 6:00 PM IST. "
+                            f"Latest available: {latest_date_str}"
+                        )
+                    elif date > latest_date:
+                        raise FileNotUploadedException(
+                            f"File for {date.strftime('%d-%b-%Y')} is not available yet. "
+                            f"Latest available: {latest_date_str}"
+                        )
+                    else:
+                        raise FileNotUploadedException(
+                            f"File for {date.strftime('%d-%b-%Y')} not found. "
+                            f"This may be a holiday or weekend. Latest available: {latest_date_str}"
+                        )
+                else:
+                    available_files = [f['filename'] for f in file_links_from_form]
+                    raise FileNotUploadedException(
+                        f"File {expected_filename} not available. Files for {date.strftime('%d-%b-%Y')}: {', '.join(available_files)}"
+                    )
             
             # Fallback: search in page DOM (shouldn't reach here if form worked)
             logger.warning("No files from form response, searching page DOM...")
@@ -316,9 +350,43 @@ class PlaywrightSamcoScraper:
             
             if not download_link:
                 if available_files:
-                    raise FileNotUploadedException(
-                        f"File {expected_filename} not available. Files shown: {', '.join(available_files[:10])}"
-                    )
+                    # Extract dates from available files to find the latest
+                    import re
+                    dates_in_files = []
+                    for f in available_files:
+                        match = re.search(r'(\d{8})', f)
+                        if match:
+                            try:
+                                file_date = datetime.strptime(match.group(1), '%Y%m%d')
+                                dates_in_files.append(file_date)
+                            except:
+                                pass
+                    
+                    if dates_in_files:
+                        latest_date = max(dates_in_files)
+                        latest_date_str = latest_date.strftime('%d-%b-%Y')
+                        
+                        # Check if requested date is today
+                        if date.date() == datetime.now().date():
+                            raise FileNotUploadedException(
+                                f"Today's file ({date.strftime('%d-%b-%Y')}) is not available yet. "
+                                f"Samco typically uploads files after 6:00 PM IST. "
+                                f"Latest available: {latest_date_str}"
+                            )
+                        elif date > latest_date:
+                            raise FileNotUploadedException(
+                                f"File for {date.strftime('%d-%b-%Y')} is not available yet. "
+                                f"Latest available: {latest_date_str}"
+                            )
+                        else:
+                            raise FileNotUploadedException(
+                                f"File for {date.strftime('%d-%b-%Y')} not found. "
+                                f"This may be a holiday or weekend. Latest available: {latest_date_str}"
+                            )
+                    else:
+                        raise FileNotUploadedException(
+                            f"File {expected_filename} not available. Available files: {', '.join(available_files[:5])}"
+                        )
                 else:
                     raise FileNotUploadedException(
                         f"No files available for {date.strftime('%d-%b-%Y')}"
